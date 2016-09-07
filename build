@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]
+then
+  echo "usage: $0 filename.cu param1 param2"
+  exit 2
+fi
+
+FILE=$1
+
+shift
+
+PROGRAM="${FILE%.*}"
+MAKEFILE_NAME="Makefile-$PROGRAM"
+
+sed "s/__PROGRAM_NAME__/$PROGRAM/g" Makefile > $MAKEFILE_NAME
+
+echo "Command: 'make -f $MAKEFILE_NAME $@' for $PROGRAM"
+
+make -f $MAKEFILE_NAME $@
