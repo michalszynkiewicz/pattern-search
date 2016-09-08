@@ -44,7 +44,7 @@ __global__ void searchForPatterns(
 		int32_t *patternStarts, int32_t* patternEnds,
 		int32_t patternsCount) {
 
-    int32_t idx = THREAD_COUNT * blockIdx.x + threadIdx.x;
+    int32_t idx = THREAD_COUNT * blockDim.x + threadIdx.x;
     int64_t resultAtPosition;
     int64_t sha;
 
@@ -67,7 +67,7 @@ __global__ void searchForPatterns(
           printf("Possible match at %d for %d\n", i - length + 1, idx);
        }
       }
-      idx += THREAD_COUNT;
+      idx += DIM_COUNT * THREAD_COUNT;;
     }
 }
 
