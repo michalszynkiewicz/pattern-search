@@ -1,5 +1,6 @@
 #include <string>
 #include "cudaUtils.h"
+#define min(a, b) a < b ? a : b
 using namespace std;
 
 class PatternHandler {
@@ -14,7 +15,7 @@ public:
   int32_t count;
   void read(size_t maxPatterns) {
     std::cin >> count;
-    count = count > maxPatterns ? maxPatterns : count;
+    count = min(count, maxPatterns);
     string patterns[count];
     ends = new int32_t[count];
     starts = new int32_t[count];
