@@ -6,7 +6,7 @@
 #include "MultiplierHandler.h"
 #include "PatternHandler.h"
 
-#define THREAD_COUNT 100
+#define THREAD_COUNT 10
 #define DIM_COUNT 10
 #define MAX_PATTERN_LENGTH 20
 #define MULTIPLIER 1117
@@ -47,7 +47,7 @@ __global__ void searchForPatterns(
     int32_t idx = THREAD_COUNT * blockIdx.x + threadIdx.x;
     int64_t resultAtPosition;
     int64_t sha;
-    printf("[%d, %d] will work starting from: %d\n", blockIdx.x, threadIdx.x, idx);
+    // printf("[%d, %d] will work starting from: %d", blockIdx.x, threadIdx.x, idx);
 
     while (idx < patternsCount) {
       sha = 0;
