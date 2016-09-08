@@ -44,7 +44,7 @@ __global__ void searchForPatterns(
 		int32_t *patternStarts, int32_t* patternEnds,
 		int32_t patternsCount) {
 
-    int32_t idx = THREAD_COUNT * threadIdx.y + threadIdx.x;
+    int32_t idx = THREAD_COUNT * blockIdx.x + threadIdx.x;
     int64_t resultAtPosition;
     int64_t sha;
 
