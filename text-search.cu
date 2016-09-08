@@ -8,6 +8,7 @@
 
 #define min(a, b) a < b ? a : b
 #define THREAD_COUNT 1000
+#define DIM_COUNT 10
 #define MAX_PATTERN_LENGTH 20
 #define MULTIPLIER 1117
 #define MODULUS 2147483647
@@ -44,7 +45,7 @@ __global__ void searchForPatterns(
 		int32_t *patternStarts, int32_t* patternEnds,
 		int32_t patternsCount) {
 
-    int32_t idx = threadIdx.x;
+    int32_t idx = THREAD_COUNT * threadIdx.y + threadIdx.x;
     int64_t resultAtPosition;
     int64_t sha;
 
@@ -73,7 +74,7 @@ __global__ void searchForPatterns(
 
 void calculate(int32_t *preprocessed, int32_t preprocessedLength, int32_t* multipliers, char* mergedPatterns,
   int32_t *patternStarts, int32_t* patternEnds, int32_t patternsCount) {
-  searchForPatterns<<<1, THREAD_COUNT>>>(
+  searchForPatterns<<<DIM_COUNT, THREAD_COUNT>>>(
           preprocessed, preprocessedLength,
           multipliers,
           mergedPatterns, patternStarts, patternEnds, patternsCount
