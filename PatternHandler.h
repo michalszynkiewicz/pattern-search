@@ -12,8 +12,9 @@ public:
   int32_t* dStarts;
   int32_t* dEnds;
   int32_t count;
-  void read() {
+  void read(size_t maxPatterns) {
     std::cin >> count;
+    count = count > maxPatterns ? maxPatterns : count;
     string patterns[count];
     ends = new int32_t[count];
     starts = new int32_t[count];

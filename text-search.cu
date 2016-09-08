@@ -31,9 +31,9 @@ int32_t* handleMultipliers() {
   return handler->dMultipliers;
 }
 
-PatternHandler* handlePatterns() {
+PatternHandler* handlePatterns(size_t maxPatterns) {
   PatternHandler* handler = new PatternHandler();
-  handler->read();
+  handler->read(maxPatterns);
   handler->share();
   return handler;
 }
@@ -99,7 +99,7 @@ int main(int argc, char **argv) {
 
   TextHandler* preprocessed = handleText();
   int32_t* multipliers = handleMultipliers();
-  PatternHandler* patterns = handlePatterns();
+  PatternHandler* patterns = handlePatterns(maxPatterns);
   int patternCount = min(patterns -> count, maxPatterns);
   printf("Will work on %d patterns\n", patternCount);
   calculate(preprocessed -> dShas, preprocessed -> length, multipliers,
