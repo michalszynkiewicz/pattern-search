@@ -6,8 +6,8 @@
 #include "MultiplierHandler.h"
 #include "PatternHandler.h"
 
-#define THREAD_COUNT 10
-#define DIM_COUNT 100
+#define THREAD_COUNT 1000
+#define DIM_COUNT 10
 #define MAX_PATTERN_LENGTH 20
 #define MULTIPLIER 1117
 #define MODULUS 2147483647
